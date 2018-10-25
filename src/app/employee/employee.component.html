@@ -1,0 +1,39 @@
+<h2>My employees</h2>
+
+<div>
+  <label>Employee name:
+    <input #heroEmployee />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(employeeName.value); employeeName.value=''">
+    add
+  </button>
+</div>
+
+<p-button label="Click" ></p-button>
+<ul class="employees">
+  <li *ngFor="let employee of employees">
+    <a routerLink="/detail/{{employee.id}}">
+      <span class="badge">{{employee.id}}</span> {{employee.resourceName}}
+    </a>
+    <button class="delete" title="delete employee"
+      (click)="delete(employee)">x</button>
+  </li>
+</ul>
+
+<p-table [columns]="cols" [value]="employees" [autoLayout]=true [paginator]="true" [rows]="10">
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th *ngFor="let col of columns">
+              {{col.header}}
+          </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-employee let-columns="columns">
+      <tr>
+          <td *ngFor="let col of columns">
+                  {{employee[col.field]}}
+          </td>
+      </tr>
+  </ng-template>
+</p-table>

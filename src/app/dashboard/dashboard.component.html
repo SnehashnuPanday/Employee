@@ -1,0 +1,10 @@
+<h3>Employee dashboard</h3>
+
+<a *ngFor="let employee of employees" class="col-1-4"
+    routerLink="/detail/{{employee.id}}">
+  <div class="module employee">
+    <h4>{{employee.resourceName}}</h4>
+  </div>
+</a>
+
+<app-employee-search></app-employee-search>
